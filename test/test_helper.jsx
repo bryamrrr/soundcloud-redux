@@ -9,6 +9,10 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../src/reducers';
 
+// Essentially we are exposing globally a jsdom generated document and window object, which can be used by React during tests.
+// Additionally we need to expose all properties from the window object that our running tests later on can use them.
+// Last but not least we are giving global access to the objects React and expect. It helps us that we don’t have to import each of them in our tests.
+
 global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
 global.window = global.document.defaultView;
 global.navigator = global.window.navigator;
